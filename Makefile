@@ -44,7 +44,7 @@ build: $(DEST) $(DATA) $(HTML) $(HTML_TESTS) $(HTML_README)
 $(DEST):
 	mkdir -p $(DEST)
 
-$(DEST)/README.html: ../README.rst
+$(DEST)/README.html: README.rst
 	$(RST2HTML) $(R2HOPTIONS) $< $@
 
 $(DEST)/%.html: src/%.rst 
