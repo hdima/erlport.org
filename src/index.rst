@@ -12,12 +12,11 @@ ErlPort source code can be obtained from `GitHub
 About
 -----
 
-ErlPort is a library for `Erlang <http://erlang.org>`__ which can easily
-connect Erlang and a number of other programming languages. The library use
-`Erlang external term format
-<http://erlang.org/doc/apps/erts/erl_ext_dist.html>`__ and `Erlang port
-protocol <http://erlang.org/doc/man/erlang.html#open_port-2>`__ to simplify
-connection between the languages.
+ErlPort is a library for `Erlang <http://erlang.org>`__ which helps connect
+Erlang and a number of other programming languages. The library use `Erlang
+external term format <http://erlang.org/doc/apps/erts/erl_ext_dist.html>`__ and
+`Erlang port protocol <http://erlang.org/doc/man/erlang.html#open_port-2>`__ to
+simplify connection between the languages.
 
 Example usage in Erlang shell:
 
