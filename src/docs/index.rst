@@ -14,6 +14,11 @@ connection between the languages.
 Features
 --------
 
+Installation
+------------
+
+TODO: Maybe we only need a link to downloads/?
+
 How ErlPort works
 -----------------
 
