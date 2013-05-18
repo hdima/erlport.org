@@ -6,18 +6,33 @@
 {% endblock %}
 {% block content %}
 <header id="header">
-  <h1><span id="title-erl">Erl</span><span id="title-port">Port</span>
+  <h1 id="title"><span id="title-erl">Erl</span><span id="title-port">Port</span>
     <span id="title-desc">- connect Erlang and other languages</span></h1>
   <nav>
     <ul>
-      <li><a href="/">home</a></li>
-      <li><a href="/downloads">downloads</a></li>
-      <li><a href="/docs">documentation</a></li>
-      <li><a href="/examples">examples</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/downloads">Downloads</a></li>
+      <li><a href="/docs">Documentation</a></li>
     </ul>
   </nav>
 </header>
 {% include "github.html" %}
 {{content}}
+<footer>
+<div id="footer">
+ Please use the following channels for reporting bugs, offering suggestions or
+ feedback:
+ <ul>
+  <li>ErlPort issue tracker:
+    <a href="https://github.com/hdima/erlport/issues">https://github.com/hdima/erlport/issues</a></li>
+  <li>Email: Dmitry Vasiliev (dima at hlabs.org)</li>
+  <li>Send a message or follow me for updates on Twitter:
+    <a href="https://twitter.com/hdima">@hdima</a></li>
+ </ul>
+</div>
+<div id="copyright">
+  &copy; 2009-2013 <address>Dmitry Vasiliev (dima at hlabs.org)</address>
+</div>
+</footer>
 {% include "analytics.html" %}
 {% endblock %}

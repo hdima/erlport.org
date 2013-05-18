@@ -48,20 +48,3 @@ News
 
 :2013-MM-DD: Released `ErlPort 1.0.0alpha
              <downloads/erlport-1.0.0alpha.tar.gz>`__
-
-Feedback
---------
-
-Please report bugs, offer suggestions or feedback at:
-
-- Report bugs at `GitHub issue tracker
-  <http://github.com/hdima/erlport/issues>`__
-
-- `Email me <mailto:dima%20at%20hlabs.org>`__
-
-- Write or follow me at `@hdima <http://twitter.com/hdima>`__
-
-.. |date| date::
-.. container:: date
-
-    Updated on |date|
