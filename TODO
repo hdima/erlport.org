@@ -1,3 +1,5 @@
+- Add 'description' meta-tag?
+
 - For pages we should create Page objects with title, body and url (something
   else?). And all the Page objects should have access to a Site object
   with methods like get_global_menu_items and get_local_menu_items.
