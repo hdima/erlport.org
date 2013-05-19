@@ -71,7 +71,7 @@ class Site(object):
         # TODO: Should be created automatically
         return [{"title": "Home", "url": "/"},
                 {"title": "News", "url": "/news"},
-                {"title": "Documentations", "url": "/docs"},
+                {"title": "Documentation", "url": "/docs"},
                 {"title": "Downloads", "url": "/downloads"},
                 {"title": "Contributors", "url": "/contributors.html"}]
 

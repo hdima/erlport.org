@@ -5,6 +5,9 @@ ErlPort - Python documentation
    :keywords: erlport erlang python docs documentation
    :description: Documentation for Python related part of ErlPort library
 
+ErlPort Python documentation
+++++++++++++++++++++++++++++
+
 .. contents::
 
 Introduction

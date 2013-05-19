@@ -6,20 +6,25 @@ ErlPort - This page is not found
    :description: ErlPort not found page
 
 This page is not found
-----------------------
+++++++++++++++++++++++
 
-This page is not found, please use one of the following pages:
+Please use one of the following pages:
 
 `Home </>`__
-    Home page with a basic information about ErlPort library
+    Home page with a basic information about ErlPort
 `News </news>`__
-    News about ErlPort library
+    News about ErlPort
 `Documentation </docs>`__
-    Documentation about ErlPort library
+    Documentation about ErlPort
 `Downloads </downloads>`__
-    Downloads for ErlPort library
+    Downloads for ErlPort
 
 What is ErlPort?
 ----------------
 
 .. include:: include/erlport.rst
+
+Main features
+~~~~~~~~~~~~~
+
+.. include:: include/features.rst

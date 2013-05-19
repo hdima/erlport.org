@@ -5,6 +5,9 @@ ErlPort - Ruby documentation
    :keywords: erlport erlang ruby docs documentation
    :description: Documentation for Ruby related part of ErlPort library
 
+ErlPort Ruby documentation
+++++++++++++++++++++++++++
+
 .. contents::
 
 Introduction

@@ -5,12 +5,17 @@ ErlPort - Documentation
    :keywords: erlport erlang python ruby docs documentation
    :description: Documentation for ErlPort library
 
+ErlPort documentation
++++++++++++++++++++++
+
 .. contents::
 
 .. include:: include/erlport.rst
 
 Features
 --------
+
+.. include:: include/features.rst
 
 Installation
 ------------
@@ -44,15 +49,3 @@ Interfaces
 
 - `Python <python.html>`__ - documentation for ErlPort interface for Python
 - `Ruby <ruby.html>`__ - documentation for ErlPort interface for Ruby
-
-Supported versions
-------------------
-
-ErlPort should work on any Unix-like or Windows operating system on which
-Erlang, Python or Ruby can work.
-
-The following versions of the languages are supported:
-
-- `Erlang <http://erlang.org>`__ - any Erlang version starting from R13B
-- `Python <http://python.org>`__ - any Python version starting from 2.5
-- `Ruby <http://ruby.org>`__ - any Ruby version starting from 1.8
