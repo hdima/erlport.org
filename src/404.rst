@@ -1,0 +1,25 @@
+ErlPort - This page is not found
+================================
+
+.. meta::
+   :keywords: erlport erlang python ruby notfound
+   :description: ErlPort not found page
+
+This page is not found
+----------------------
+
+This page is not found, please use one of the following pages:
+
+`Home </>`__
+    Home page with a basic information about ErlPort library
+`News </news>`__
+    News about ErlPort library
+`Documentation </docs>`__
+    Documentation about ErlPort library
+`Downloads </downloads>`__
+    Downloads for ErlPort library
+
+What is ErlPort?
+----------------
+
+.. include:: include/erlport.rst
