@@ -1,5 +1,5 @@
-ErlPort Documentation
-=====================
+ErlPort - Documentation
+=======================
 
 .. contents::
 

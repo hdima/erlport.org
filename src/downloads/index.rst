@@ -1,4 +1,4 @@
-Downloads
----------
+ErlPort - Downloads
+===================
 
 TODO: Prerequisites etc.

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{title|default("ErlPort - connect Erlang and other languages", true)}}{% endblock %}
+{% block title %}{{title}}{% endblock %}
 {% block headers %}
 <link rel="shortcut icon" href="/favicon.ico" />
 <meta name="keywords" content="erlport erlang python ruby" />
@@ -11,13 +11,16 @@
   <nav>
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/downloads">Downloads</a></li>
+      <li><a href="/news">News</a></li>
       <li><a href="/docs">Documentation</a></li>
+      <li><a href="/downloads">Downloads</a></li>
     </ul>
   </nav>
 </header>
 {% include "github.html" %}
+<div class="document">
 {{content}}
+</div>
 <footer>
 <div id="footer">
  Please use the following channels for reporting bugs, offering suggestions or

@@ -84,7 +84,7 @@ class Page(object):
         data = open(self.source, "rb").read()
         parts = publish_parts(data, writer_name="html")
         self.title = parts["title"]
-        self.body = parts["html_body"]
+        self.body = parts["body"]
 
     def render(self):
         env = Environment(loader=FileSystemLoader("templates"))
