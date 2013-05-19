@@ -7,13 +7,7 @@ ErlPort - Documentation
 
 .. contents::
 
-ErlPort is a library for `Erlang <http://erlang.org>`__ which helps connect
-Erlang and a number of other programming languages. Currently supported
-external languages are `Python <python.html>`__ and `Ruby <ruby.html>`__. The
-library use `Erlang external term format
-<http://erlang.org/doc/apps/erts/erl_ext_dist.html>`__ and `Erlang port
-protocol <http://erlang.org/doc/man/erlang.html#open_port-2>`__ to simplify
-connection between the languages.
+.. include:: include/erlport.rst
 
 Features
 --------
