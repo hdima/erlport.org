@@ -72,7 +72,8 @@ class Site(object):
         return [{"title": "Home", "url": "/"},
                 {"title": "News", "url": "/news"},
                 {"title": "Documentations", "url": "/docs"},
-                {"title": "Downloads", "url": "/downloads"}]
+                {"title": "Downloads", "url": "/downloads"},
+                {"title": "Contributors", "url": "/contributors.html"}]
 
     def add_page(self, page):
         self.pages[page.path] = page
@@ -111,7 +112,7 @@ class Page(object):
         parts = publish_parts(data, writer_name="html")
         self.meta = self._filter_meta(parts["meta"])
         self.title = parts["title"]
-        self.body = parts["body"]
+        self.body = parts["html_subtitle"] + parts["body"]
 
     def _filter_meta(self, meta):
         filter = MetaTagFilter()

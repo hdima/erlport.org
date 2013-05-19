@@ -1,7 +1,12 @@
-Contributors
-------------
+ErlPort - Contributors
+======================
 
-`ErlPort <index.html>`_ contributors:
+.. meta::
+   :keywords: erlport erlang python ruby contributors
+   :description: Contributors for ErlPort library
+
+ErlPort contributors
+--------------------
 
 - `Artem Semenov <http://github.com/arsemyonov>`_
 - `Bob Ippolito <http://github.com/etrepum>`_
@@ -11,8 +16,3 @@ Contributors
 - `Jacob Perkins <http://github.com/japerk>`_
 - `Marko Mikulicic <http://github.com/mmikulicic>`_
 - `Paul Bonser <http://github.com/pib>`_
-
-.. |date| date::
-.. container:: date
-
-    Updated on |date|
