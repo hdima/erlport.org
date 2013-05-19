@@ -3,7 +3,7 @@ ErlPort - connect Erlang and other languages
 
 .. meta::
    :keywords: erlport erlang python ruby
-   :description: ErlPort - connect Erlang and other languages
+   :description: ErlPort - library to connect Erlang and other languages
 
 .. class:: sidebar
 

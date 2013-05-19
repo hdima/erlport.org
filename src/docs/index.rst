@@ -1,6 +1,10 @@
 ErlPort - Documentation
 =======================
 
+.. meta::
+   :keywords: erlport erlang python ruby docs documentation
+   :description: Documentation for ErlPort library
+
 .. contents::
 
 ErlPort is a library for `Erlang <http://erlang.org>`__ which helps connect

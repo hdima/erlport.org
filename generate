@@ -4,6 +4,8 @@ import os
 import sys
 import shutil
 import StringIO
+from cgi import escape
+from HTMLParser import HTMLParser
 
 from jinja2 import Environment, FileSystemLoader, Template
 from pygments import lexers, util, highlight, formatters
@@ -65,12 +67,36 @@ class Site(object):
     def __init__(self):
         self.pages = {}
 
+    def getGlobalMenu(self):
+        # TODO: Should be created automatically
+        return [{"title": "Home", "url": "/"},
+                {"title": "News", "url": "/news"},
+                {"title": "Documentations", "url": "/docs"},
+                {"title": "Downloads", "url": "/downloads"}]
+
     def add_page(self, page):
         self.pages[page.path] = page
 
     def save(self, destination):
         for page in self.pages.values():
             page.save(destination)
+
+class MetaTagFilter(HTMLParser):
+
+    def __init__(self):
+        self.filtered = ""
+        HTMLParser.__init__(self)
+
+    def process(self, data):
+        self.feed(data)
+        self.close()
+        return self.filtered
+
+    def handle_startendtag(self, tag, attrs):
+        if tag == "meta" and not (("http-equiv", "Content-Type") in attrs
+                or ("name", "generator") in attrs):
+            self.filtered += "<%s %s />\n" % (tag,
+                " ".join('%s="%s"' % (escape(n), escape(v)) for n, v in attrs))
 
 class Page(object):
 
@@ -83,13 +109,19 @@ class Page(object):
     def load(self):
         data = open(self.source, "rb").read()
         parts = publish_parts(data, writer_name="html")
+        self.meta = self._filter_meta(parts["meta"])
         self.title = parts["title"]
         self.body = parts["body"]
+
+    def _filter_meta(self, meta):
+        filter = MetaTagFilter()
+        return filter.process(meta)
 
     def render(self):
         env = Environment(loader=FileSystemLoader("templates"))
         template = env.get_template("page.html")
-        return template.render(content=self.body, title=self.title)
+        return template.render(content=self.body, title=self.title,
+            meta=self.meta, global_menu=self.site.getGlobalMenu())
 
     def save(self, destination):
         html = self.render()

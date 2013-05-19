@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% block title %}{{title}}{% endblock %}
+{% block title %}{{title|e}}{% endblock %}
 {% block headers %}
 <link rel="shortcut icon" href="/favicon.ico" />
-<meta name="keywords" content="erlport erlang python ruby" />
+{{meta}}
 {% endblock %}
 {% block content %}
 <header id="header">
@@ -10,10 +10,9 @@
     <span id="title-desc">- connect Erlang and other languages</span></h1>
   <nav>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/news">News</a></li>
-      <li><a href="/docs">Documentation</a></li>
-      <li><a href="/downloads">Downloads</a></li>
+    {% for item in global_menu %}
+      <li><a href="{{item.url}}">{{item.title|e}}</a></li>
+    {% endfor %}
     </ul>
   </nav>
 </header>
