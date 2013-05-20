@@ -20,16 +20,16 @@ more details of how to use the library.
 Downloads
 ---------
 
-- Download `ErlPort 1.0.0alpha <downloads/erlport-1.0.0alpha.tar.gz>`__.
+.. class:: latest-download
 
+Download `ErlPort 1.0.0alpha </downloads/#erlport-1-0-0alpha>`__
 
-ErlPort source code can be obtained from `GitHub
-<http://github.com/hdima/erlport>`__.
+Check `downloads </downloads/>`_ page for more download options.
 
 .. class:: main-news news
 
-News
-----
+Latest news
+-----------
 
 *2013-MM-DD* Released ErlPort 1.0.0alpha
   After almost 2 years of development new `1.0.0alpha

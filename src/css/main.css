@@ -253,14 +253,27 @@ tfoot td {}
 
 .main-downloads {
   float: right;
-  width: 340px;
-  margin: 0 0 0 2em;
+  width: 320px;
+  margin: 0;
+  padding: 1.5em 1em 3em 3em;
+  color: white;
+  background-color: #902020;
+}
+.main-downloads h1 {
+  display: none;
+}
+.main-downloads a {
+  color: #ffff75;
+}
+.latest-download {
+  font-size: 1.7em;
+  font-weight: bold;
 }
 
 .main-description {
   float: left;
   width: 540px;
-  margin: 0 2em 0 0;
+  margin: 0 0.5em 0 0;
 }
 .main-description h1 {
   font-size: 2em;
@@ -274,6 +287,9 @@ tfoot td {}
 /*
  * News page
  */
+.news dl, dl.news {
+  border-left: 5px solid #c5feb5;
+}
 .news dt {
   font-size: 1.2em;
   font-weight: normal;
@@ -288,7 +304,10 @@ tfoot td {}
 }
 .news dd {
   width: 540px;
-  margin: 1em 0 0 2em;
+  padding: 1em 0 1em 0;
+}
+.main-news dd {
+  color: #556535;
 }
 /*
  * Not found page
@@ -305,17 +324,20 @@ footer {
   color: #202020;
   background-color: #c5feb5;
 }
-#footer {
+#feedback {
   clear: both;
   margin: 0 auto;
   width: 940px;
-  padding: 2em;
+  padding: 2em 2em 1em 2em;
 }
-#copyright {
-  text-align: right;
+#footer {
   padding: 1em 3em;
-  background-color: #404060;
+  background-color: #303050;
   color: #f0f0f0;
+  text-align: right;
+}
+#footer a {
+  color: #ffff75;
 }
 address {
   font-style: normal;
