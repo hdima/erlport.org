@@ -287,7 +287,8 @@ tfoot td {}
 /*
  * News page
  */
-.news dl, dl.news {
+dl.news {
+  width: 740px;
   border-left: 5px solid #c5feb5;
 }
 .news dt {
@@ -295,7 +296,6 @@ tfoot td {}
   font-weight: normal;
   background-color: #c5feb5;
   padding: 0.3em 0.6em;
-  width: 640px;
 }
 .news dt em {
   font-style: normal;
@@ -303,11 +303,7 @@ tfoot td {}
   margin-right: 1em;
 }
 .news dd {
-  width: 540px;
-  padding: 1em 0 1em 0;
-}
-.main-news dd {
-  color: #556535;
+  padding: 1em 1em 1em 0;
 }
 /*
  * Not found page
