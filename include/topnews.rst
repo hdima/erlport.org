@@ -5,8 +5,8 @@
   </downloads/#erlport-1-0-0alpha>`__ version of ErlPort library was released.
 
   New version of ErlPort simplifies development of applications which want to
-  connect Erlang, Python or Ruby together or just want to use Erlang as
-  a middleware.
+  connect Erlang and Python or Erlang and Ruby or want to use Erlang as
+  a middleware for Python or Ruby.
 
   Please check `documentation </docs>`__ page for more details about ErlPort
   and `downloads </downloads>`__ page about `1.0.0alpha
