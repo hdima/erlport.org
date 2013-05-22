@@ -12,8 +12,8 @@ ErlPort documentation
 
 .. include:: include/erlport.rst
 
-Features
---------
+Main ErlPort Features
+---------------------
 
 .. include:: include/features.rst
 

@@ -256,8 +256,9 @@ tfoot td {}
   width: 320px;
   margin: 0;
   padding: 1.5em 1em 3em 3em;
-  color: white;
-  background-color: #902020;
+  color: #fffff5;
+  background-color: #882255;
+  border: 7px solid #cc4488;
 }
 .main-downloads h1 {
   display: none;
