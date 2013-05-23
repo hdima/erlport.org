@@ -8,7 +8,7 @@ Support for all recent versions of the languages
   `Python <http://python.org>`__
     Any Python version starting from 2.5 (including Python 3)
   `Ruby <http://ruby.org>`__
-    Any Ruby version starting from 1.8
+    Any Ruby version starting from 1.8.7
 
 Function calls between all the supported languages
   ErlPort supports consistent APIs to make function calls from Erlang to any
