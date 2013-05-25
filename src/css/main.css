@@ -132,6 +132,7 @@ pre {
   margin: 1em;
   background-color: #ffffe5;
   border: dashed 1px #aaaaaa;
+  font-size: 0.9em;
 }
 
 /*
@@ -273,7 +274,7 @@ tfoot td {}
 
 .main-description {
   float: left;
-  width: 540px;
+  width: 530px;
   margin: 0 0.5em 0 0;
 }
 .main-description h1 {
@@ -281,7 +282,7 @@ tfoot td {}
 }
 
 .main-news {
-  clear: left;
+  clear: both;
   padding-top: 2em;
 }
 
@@ -289,7 +290,6 @@ tfoot td {}
  * News page
  */
 dl.news {
-  width: 740px;
   border-left: 5px solid #c5feb5;
 }
 .news dt {
@@ -317,6 +317,7 @@ dl.news {
  * Footer
  */
 footer {
+  clear: both;
   margin: 2em 0;
   color: #202020;
   background-color: #c5feb5;
