@@ -23,8 +23,3 @@ What is ErlPort?
 ----------------
 
 .. include:: include/erlport.rst
-
-Main ErlPort features
-~~~~~~~~~~~~~~~~~~~~~
-
-.. include:: include/features.rst

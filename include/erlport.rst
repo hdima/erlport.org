@@ -1,5 +1,5 @@
 ErlPort is a library for `Erlang <http://erlang.org>`__ which helps connect
-Erlang and a number of other programming languages. Currently supported
+Erlang to a number of other programming languages. Currently supported
 external languages are `Python </docs/python.html>`__ and `Ruby
 </docs/ruby.html>`__. The library uses `Erlang port protocol
 <http://erlang.org/doc/man/erlang.html#open_port-2>`__ to simplify connection
