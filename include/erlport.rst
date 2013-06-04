@@ -5,4 +5,4 @@ external languages are `Python </docs/python.html>`__ and `Ruby
 <http://erlang.org/doc/man/erlang.html#open_port-2>`__ to simplify connection
 between languages and `Erlang external term format
 <http://erlang.org/doc/apps/erts/erl_ext_dist.html>`__ to set the common
-mapping of data types between languages.
+data types mapping between languages.

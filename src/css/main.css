@@ -128,10 +128,10 @@ q {}
  * Code
  */
 pre {
-  padding: 1em;
-  margin: 1em;
+  padding: .7em 1em;
+  margin: 1em 2em 1em 1em;
   background-color: #ffffe5;
-  border: dashed 1px #aaaaaa;
+  border: dashed 1px #ccc;
   font-size: 0.9em;
 }
 
@@ -141,6 +141,8 @@ pre {
 table {
   margin: .5em auto 1.5em auto;
   width: 98%;
+  border: solid 1px #aad;
+  background-color: #eaefff;
 }
 
 thead th {
@@ -150,7 +152,8 @@ thead th {
 thead td {}
 
 tbody td {
-  padding: .5em .4em;
+  padding: .5em;
+  border: solid 1px #aad;
 }
 tbody th {}
 
@@ -291,6 +294,8 @@ tfoot td {}
  */
 dl.news {
   border-left: 5px solid #c5feb5;
+  /*background-color: #f2f8f6;*/
+  background-color: #eaefff;
 }
 .news dt {
   font-size: 1.2em;
