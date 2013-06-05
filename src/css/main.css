@@ -230,10 +230,10 @@ tfoot td {}
   padding: 0.25em 1em;
   text-decoration: none;
 }
-#header nav a:hover, #header nav a:active,
+#header nav a:hover, #header nav a:active, #header nav a.selected,
 #header nav .active a:link, #header nav .active a:visited {
-  background: #fafffd;
-  color: #606080;
+  background-color: #d0d0f0;
+  color: #303050;
   text-shadow: none !important;
 }
 

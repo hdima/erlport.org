@@ -11,7 +11,11 @@
   <nav>
     <ul>
     {% for item in global_menu %}
+      {% if item.selected %}
+      <li><a href="{{item.url}}" class="selected">{{item.title|e}}</a></li>
+      {% else %}
       <li><a href="{{item.url}}">{{item.title|e}}</a></li>
+      {% endif %}
     {% endfor %}
     </ul>
   </nav>

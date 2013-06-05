@@ -67,13 +67,22 @@ class Site(object):
     def __init__(self):
         self.pages = {}
 
-    def getGlobalMenu(self):
+    def getGlobalMenu(self, path):
         # TODO: Should be created automatically
-        return [{"title": "Home", "url": "/"},
+        home = {"title": "Home", "url": "/"}
+        items = [home,
                 {"title": "News", "url": "/news"},
                 {"title": "Documentation", "url": "/docs"},
                 {"title": "Downloads", "url": "/downloads"},
                 {"title": "Contributors", "url": "/contributors.html"}]
+        root = "/".join(path.split("/")[:2])
+        for item in items:
+            if root == item["url"]:
+                item["selected"] = True
+                break
+        else:
+            home["selected"] = True
+        return items
 
     def add_page(self, page):
         self.pages[page.path] = page
@@ -103,6 +112,8 @@ class Page(object):
 
     def __init__(self, site, source, path):
         self.site = site
+        if not path.startswith("/"):
+            path = "/" + path
         self.path = path
         self.source = source
         self.load()
@@ -122,7 +133,7 @@ class Page(object):
         env = Environment(loader=FileSystemLoader("templates"))
         template = env.get_template("page.html")
         return template.render(content=self.body, title=self.title,
-            meta=self.meta, global_menu=self.site.getGlobalMenu())
+            meta=self.meta, global_menu=self.site.getGlobalMenu(self.path))
 
     def save(self, destination):
         html = self.render()
