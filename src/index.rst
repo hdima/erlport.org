@@ -24,7 +24,8 @@ Downloads
 
 Download `ErlPort 1.0.0alpha </downloads/#erlport-1-0-0alpha>`__
 
-Check `downloads </downloads/>`_ page for more download options.
+Check `downloads </downloads/>`_ page for installation instructions and
+packages to download
 
 .. class:: main-news
 

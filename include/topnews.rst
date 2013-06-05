@@ -1,12 +1,14 @@
 .. class:: news
 
-*2013-06-DD* Released ErlPort 1.0.0alpha
+.. _erlport1.0.0alpha:
+
+`2013-06-DD </news/#erlport1-0-0alpha>`_ Released ErlPort 1.0.0alpha
   After almost 2 years of development new `1.0.0alpha
   </downloads/#erlport-1-0-0alpha>`__ version of ErlPort library was released.
 
-  New version of ErlPort helps develop applications which need to connect
-  Erlang to Python or Ruby or need to use Erlang as a middleware for Python or
-  Ruby.
+  New version of ErlPort helps develop applications which want to connect
+  Erlang to `Python </docs/python.html>`__ or `Ruby </docs/ruby.html>`__ or
+  want to use Erlang as a middleware for Python or Ruby.
 
   The following is an example session with ErlPort and Python:
 
@@ -21,7 +23,11 @@
     4> python:stop(P).
     ok
 
-  **TODO: Warning about alpha version!**
-
   Please check `documentation </docs>`__ page for more details about ErlPort
-  and `downloads </downloads>`__ page for more download options.
+  and `downloads </downloads>`__ page for installation instructions and
+  packages to download.
+
+  .. class:: warning
+
+  *WARNING: It's still an alpha version so expect bugs and backward incompatible
+  changes in the future*

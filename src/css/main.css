@@ -22,16 +22,16 @@ h2 {
   font-size: 1.571em; /* 22px */
 }
 h3 {
-  font-size: 1.429em /* 20px */
+  font-size: 1.429em; /* 20px */
 }
 h4 {
-  font-size: 1.286em /* 18px */
+  font-size: 1.286em; /* 18px */
 }
 h5 {
-  font-size: 1.143em /* 16px */
+  font-size: 1.143em; /* 16px */
 }
 h6 {
-  font-size: 1em /* 14px */
+  font-size: 1em; /* 14px */
 }
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
@@ -152,7 +152,7 @@ thead th {
 thead td {}
 
 tbody td {
-  padding: .5em;
+  padding: .5em 1em;
   border: solid 1px #aad;
 }
 tbody th {}
@@ -289,13 +289,32 @@ tfoot td {}
   padding-top: 2em;
 }
 
+.warning {
+  color: #e03030;
+}
+
+/*
+ * Sidebars
+ */
+.sidebar {
+  float:right;
+  width: 300px;
+  margin: 0 0 2em 2em;
+  padding: 1em;
+  background-color: #c5feb5;
+  border: solid 7px #a5de95;
+}
+
+.sidebar-title {
+  font-size: 1.571em;
+  text-align: center;
+}
+
 /*
  * News page
  */
 dl.news {
-  border-left: 5px solid #c5feb5;
-  /*background-color: #f2f8f6;*/
-  background-color: #eaefff;
+  background-color: #f0f5ff;
 }
 .news dt {
   font-size: 1.2em;
@@ -303,7 +322,7 @@ dl.news {
   background-color: #c5feb5;
   padding: 0.3em 0.6em;
 }
-.news dt em {
+.news dt a {
   font-style: normal;
   color: #3060a0;
   margin-right: 1em;
@@ -314,8 +333,11 @@ dl.news {
 /*
  * Not found page
  */
-#this-page-is-not-found {
-  color: #e03030;
+.not-found {
+  background-color: #e03030;
+  color: white;
+  padding: .3em 1em;
+  font-weight: bold;
 }
 
 /*
