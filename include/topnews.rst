@@ -23,8 +23,8 @@
     4> python:stop(P).
     ok
 
-  Please check `documentation </docs>`__ page for more details about ErlPort
-  and `downloads </downloads>`__ page for installation instructions and
+  Please check `Documentation </docs>`__ page for more details about ErlPort
+  and `Downloads </downloads>`__ page for installation instructions and
   packages to download.
 
   .. class:: warning

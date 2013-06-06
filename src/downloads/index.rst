@@ -56,15 +56,16 @@ create the *packages* directory with new packages:
 
     $ make release
 
-If you just want to run ErlPort from the source directory you can do it with
-the following command:
+If you just want to run ErlPort from the source directory you can start `Erlang
+shell <http://www.erlang.org/doc/man/shell.html>`__ with ErlPort with the
+following command:
 
 .. sourcecode:: sh
 
     $ erl -pa ../erlport
 
-Please check the `documentation </docs>`_ page for features of ErlPort,
-examples and more details of how to use the library.
+Please check `Documentation </docs>`_ page for features of ErlPort, examples
+and more details of how to use the library.
 
 ErlPort 1.0.0alpha
 ------------------

@@ -8,20 +8,19 @@ ErlPort - Documentation
 ErlPort documentation
 +++++++++++++++++++++
 
+.. sidebar:: Language specific documentation
+
+    `Python <python.html>`__
+        Details and examples for Python
+    `Ruby <ruby.html>`__
+        Details and examples for Ruby
+
 .. contents::
 
 .. include:: include/erlport.rst
 
-Please check `downloads </downloads/>`_ page for installation instructions and
+Please check `Downloads </downloads/>`_ page for installation instructions and
 packages to download.
-
-Language specific documentation
--------------------------------
-
-`Python <python.html>`__
-    Details and examples for Python
-`Ruby <ruby.html>`__
-    Details and examples for Ruby
 
 ErlPort Features
 ----------------
@@ -46,8 +45,8 @@ Support for custom data types
 
 Support for all recent versions of the languages
   ErlPort should work on any operating system (including Windows) on which
-  supported languages are work. All modern versions of Erlang, Python and Ruby
-  are supported. Please check `downloads </downloads/>`__ page for more
+  supported languages are work. All recent versions of Erlang, Python and Ruby
+  are supported. Please check `Downloads </downloads/>`__ page for more
   details.
 
 How ErlPort works
