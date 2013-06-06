@@ -290,7 +290,7 @@ tfoot td {}
 }
 
 .warning {
-  color: #e03030;
+  color: #a03030;
 }
 
 /*
@@ -334,10 +334,11 @@ dl.news {
  * Not found page
  */
 .not-found {
-  background-color: #e03030;
+  background-color: #d53030;
   color: white;
   padding: .3em 1em;
   font-weight: bold;
+  text-align: center;
 }
 
 /*

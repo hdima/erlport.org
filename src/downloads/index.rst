@@ -10,13 +10,12 @@ ErlPort downloads
 
 .. sidebar:: ErlPort prerequisites
 
-    +--------+------------------------------------+
-    | Erlang | R13 or higher                      |
-    +--------+------------------------------------+
-    | Python | 2.5 or higher (including Python 3) |
-    +--------+------------------------------------+
-    | Ruby   | 1.8.6 or higher (including Ruby 2) |
-    +--------+------------------------------------+
+    `Erlang <http://erlang.org>`__
+        R13 or higher
+    `Python <http://python.org>`__
+        2.5 or higher (including Python 3)
+    `Ruby <http://ruby-lang.org>`__
+        1.8.6 or higher (including Ruby 2)
 
 .. contents::
 

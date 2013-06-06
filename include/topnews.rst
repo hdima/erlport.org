@@ -8,9 +8,9 @@
 
   New version of ErlPort helps develop applications which want to connect
   Erlang to `Python </docs/python.html>`__ or `Ruby </docs/ruby.html>`__ or
-  want to use Erlang as a middleware for Python or Ruby.
+  want to use Erlang as a middleware for these two programming languages.
 
-  The following is an example session with ErlPort and Python:
+  The following is an example ErlPort session for Python:
 
   .. sourcecode:: erl
 
@@ -29,5 +29,5 @@
 
   .. class:: warning
 
-  *WARNING: It's still an alpha version so expect bugs and backward incompatible
-  changes in the future*
+  *WARNING: It's still an alpha version so expect bugs and backward
+  incompatible changes in the future*
