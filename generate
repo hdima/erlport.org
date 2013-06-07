@@ -31,7 +31,8 @@ class CodeBlockHighlighter(object):
         except util.ClassNotFound:
             return None
 
-        formatter = formatters.get_formatter_by_name("html")
+        formatter = formatters.get_formatter_by_name("html",
+            cssclass="sourcecode %s" % (language,))
         def _highlighter(code):
             outfile = StringIO.StringIO()
             highlight(code, lexer, formatter, outfile)
@@ -58,8 +59,7 @@ class CodeBlockHighlighter(object):
                 nodes.literal_block(block_text, block_text), line=lineno)
             return [error]
 
-        text = highlighter("\n".join(content))
-        html = '<div class="sourcecode %s">\n%s\n</div>\n' % (language, text)
+        html = highlighter("\n".join(content))
         return [nodes.raw("", html, format="html")]
 
 class Site(object):
