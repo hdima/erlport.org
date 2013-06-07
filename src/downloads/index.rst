@@ -70,6 +70,9 @@ and more details of how to use the library.
 ErlPort 1.0.0alpha
 ------------------
 
+Make sure you read `Installation instruction <#installation>`__ before
+downloading any of the packages below.
+
 .. class:: warning
 
 *WARNING: It's still an alpha version so expect bugs and backward incompatible
@@ -77,6 +80,9 @@ changes in the future*
 
 Binary packages
 ~~~~~~~~~~~~~~~
+
+The following are the binary packages compiled for each supported version of
+Erlang and packaged into *tar.gz* and *zip* archives:
 
 +----------------------------------------------------+--------------------------------------+
 | ErlPort 1.0.0alpha *tar.gz* archive for Erlang R16 | `<erlport-R16-0.9.8.tar.gz>`__ (76K) |
@@ -98,6 +104,8 @@ Binary packages
 
 Source packages
 ~~~~~~~~~~~~~~~
+
+The ErlPort source archives in *tar.gz* and *zip* formats:
 
 +---------------------------------------------+--------------------------------------+
 | ErlPort 1.0.0alpha *tar.gz* sources archive | `<erlport-src-0.9.8.tar.gz>`__ (70K) |

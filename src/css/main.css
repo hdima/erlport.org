@@ -128,6 +128,7 @@ q {}
  * Code
  */
 pre {
+  white-space: pre;
   padding: .7em 1em;
   margin: 1em 2em 1em 1em;
   background-color: #ffffe5;
@@ -140,15 +141,15 @@ pre {
  * Tables
  */
 table {
-  margin: .5em auto 1.5em auto;
-  width: 98%;
+  margin: 1em auto 1.5em 1.5em;
+  width: 90%;
   border: solid 1px #aad;
   background-color: #eaefff;
 }
 
 thead th {
-  padding: .5em .4em;
-  text-align: left;
+  padding: .5em 1em;
+  border: solid 1px #aad;
 }
 thead td {}
 
@@ -262,8 +263,8 @@ tfoot td {}
   margin: 0;
   padding: 1.5em 1em 3em 3em;
   color: #fffff5;
-  background-color: #882255;
-  border: 7px solid #cc4488;
+  background-color: #771144;
+  border: 7px solid #bb3377;
 }
 .main-downloads h1 {
   display: none;
