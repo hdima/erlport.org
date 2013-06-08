@@ -62,7 +62,7 @@ following command:
 
 .. sourcecode:: sh
 
-    $ erl -pa ../erlport
+    $ erl -env ERL_LIBS ../erlport
 
 Please check `Documentation </docs>`_ page for features of ErlPort, examples
 and more details of how to use the library.
