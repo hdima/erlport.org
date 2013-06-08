@@ -156,7 +156,7 @@ ErlPort uses Python `erlport.erlang` module as an interface to Erlang. Namely
 The `erlport.erlang.call()`_ function accepts Module and Function arguments as
 `erlport.erlterms.Atom()`_ object and Arguments as a list. Currently each
 Erlang function will be called in a new Erlang process. Let's create the
-following Python module in ``processes.py`` file in the current directory which
+following Python module in ``pids.py`` file in the current directory which
 will be added to Python path automatically by Python:
 
 .. sourcecode:: python
@@ -164,7 +164,7 @@ will be added to Python path automatically by Python:
     from erlport.erlterms import Atom
     from erlport.erlang import call
 
-    def processes():
+    def pids():
         Pid1 = call(Atom("erlang"), Atom("self"), [])
         Pid2 = call(Atom("erlang"), Atom("self"), [])
         return [Pid1, Pid2]
@@ -175,20 +175,226 @@ Now we can call this function from Erlang:
 
     1> {ok, P} = python:start().
     {ok,<0.34.0>}
-    2> python:call(P, processes, processes, []).
+    2> python:call(P, pids, pids, []).
     [<0.36.0>,<0.37.0>]
+    3> python:stop(P).
+    ok
+
+To simplify the demonstration the next example will use the call chaining so
+Python to Erlang calls will be initiated from Erlang shell. The following
+example also demonstrate the communication between two Python instances:
+
+.. sourcecode:: erl
+
+    1> {ok, P1} = python:start().
+    {ok,<0.34.0>}
+    2> {ok, P2} = python:start().
+    {ok,<0.36.0>}
+    3> python:call(P1, os, getpid, []).
+    5048
+    4> python:call(P2, os, getpid, []).
+    5050
+    5> python:call(P1, 'erlport.erlang', call,
+    5>             [python, call, [P2, os, getpid, []]]).
+    5050
+    6> python:stop(P1).
+    ok
+    7> python:stop(P2).
+    ok
+
+So the command #5 actually calls `erlport.erlang.call()`_ function for instance
+``P1`` which calls Erlang function `python:call/4`_ which in order calls Python
+function ``os.getpid()`` for instance ``P2``.
 
 Send messages from Erlang to Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. sidebar:: Erlang cast API
+
+    Check `Erlang API`_, `Python API`_ and `data types mapping`_ sections for
+    more details about `python:cast/2`_ and
+    `erlport.erlang.set_message_handler()`_ functions and supported data types.
+
+To send a message from Erlang to Python first a message handler function on
+Python side should be set. The message handler function can be set with
+`erlport.erlang.set_message_handler()`_ function. The default message handler
+just ignore all the incoming messages. And if you don't need to handle incoming
+message anymore the default handler can be set again with
+`erlport.erlang.set_default_message_handler()`_ function.
+
+*Be careful when you write a message handling function because the function can
+also get some unexpected messages which probably should be ignored and in case
+of any error in the message handler the whole instance will be shut down.*
+
+To demonstrate message sending from Erlang to Python first create the following
+module in the current directory in a file ``handler.py``:
+
+.. sourcecode:: python
+
+    from erlport.erlterms import Atom
+    from erlport.erlang import set_message_handler, cast
+
+    def register_handler(dest):
+        def handler(message):
+            cast(dest, message)
+        set_message_handler(handler)
+        return Atom("ok")
+
+This message handler just send all messages to the predefined Erlang process.
+
+To send a message to Python `python:cast/2`_ function can be used and also all
+unknown to ErlPort messages will be redirected to the message handler.
+
+.. sourcecode:: erl
+
+    1> {ok, P} = python:start().
+    {ok,<0.34.0>}
+    2> python:call(P, handler, register_handler, [self()]).
+    ok
+    3> python:cast(P, test_message).
+    ok
+    4> flush().
+    Shell got test_message
+    ok
+    5> P ! test_message2.
+    test_message2
+    6> flush().
+    Shell got test_message2
+    ok
+    7> python:stop(P).
+    ok
+
 Send messages from Python to Erlang
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Custom datatypes
-~~~~~~~~~~~~~~~~
+.. sidebar:: Python cast API
+
+    Check `Python API`_ and `data types mapping`_ sections for more details
+    about `erlport.erlang.cast()`_ function and supported data types.
+
+It's very easy to send a message from Python to Erlang - you just need to know
+the ``pid()`` or registered name of the destination process. The function
+`erlport.erlang.cast()`_ accepts two arguments - the id of the destination
+process and a message which can be any supported data type according to `Data
+types mapping`_.
+
+The following is a demonstration of message sending from Python:
+
+.. sourcecode:: erl
+
+    1> {ok, P} = python:start().
+    {ok,<0.34.0>}
+    2> python:call(P, 'erlport.erlang', cast, [self(), test_message]).
+    undefined
+    3> flush().
+    Shell got test_message
+    ok
+    4> register(test_process, self()).
+    true
+    5> python:call(P, 'erlport.erlang', cast, [test_process, test_message2]).
+    undefined
+    6> flush().
+    Shell got test_message2
+    ok
+    7> python:stop(P)
+    ok
+
+Custom data types
+~~~~~~~~~~~~~~~~~
+
+.. sidebar:: Python data types API
+
+    Check `Python API`_ and `data types mapping`_ sections for more details
+    about `erlport.erlang.set_encoder()`_ and `erlport.erlang.set_decoder()`_
+    functions and supported data types.
+
+ErlPort only supports a minimal `set of data types`_ to make sure the types are
+orthogonal - can be created and meaningful in any language supported by
+ErlPort. In addition ErlPort also supports language specific opaque data type
+containers so for example Python instances can exchange any `picklable`_ data
+type. But sometimes it's better to use *rich* inter-language data types in
+which case custom data types can be used.
+
+There are two functions to support custom data types:
+
+- `erlport.erlang.set_encoder()`_ which sets the Python to Erlang data type
+  converter, and
+- `erlport.erlang.set_decoder()`_ which sets the converter for the opposite
+  direction - Erlang to Python
+
+Both of the functions can be reset to the default, which just pass the value
+unmodified, with `erlport.erlang.set_default_encoder()`_ and
+`erlport.erlang.set_default_decoder()`_ functions.
+
+To give you a feeling how it works the following module in the current
+directory and ``date_type.py`` file will add the partial support to ErlPort for
+`datetime.date()`_ and `datetime.timedelta()`_ objects:
+
+.. sourcecode:: python
+
+    from datetime import date, timedelta
+    from erlport.erlterms import Atom
+    from erlport.erlang import set_encoder, set_decoder
+
+    def setup_date_type():
+        set_encoder(date_encoder)
+        set_decoder(date_decoder)
+        return Atom("ok")
+
+    def date_encoder(value):
+        if isinstance(value, date):
+            value = Atom("date"), (value.year, value.month, value.day)
+        elif isinstance(value, timedelta):
+            value = Atom("days"), value.days
+        return value
+
+    def date_decoder(value):
+        if isinstance(value, tuple) and len(value) == 2:
+            if value[0] == "date":
+                year, month, day = value[1]
+                value = date(year, month, day)
+            elif value[0] == "days":
+                value = timedelta(days=value[1])
+        return value
+
+The ``date_type`` module can be used in Erlang shell like this:
+
+.. sourcecode:: erl
+
+
+    1> {ok, P} = python:start().
+    {ok,<0.34.0>}
+    2> python:call(P, date_type, setup_date_type, []).
+    ok
+    3> python:call(P, datetime, timedelta, []).
+    {days,0}
+    4> python:call(P, datetime, 'date.today', []).
+    {date,{2013,6,10}}
+    5> python:call(P, operator, sub, [{date, {2013, 1, 5}},
+    5>                                {date, {2012, 12, 15}}]).
+    {days,21}
+    6> python:call(P, operator, add, [{date, {2013, 1, 1}},
+    6>                                {days, -1}]).
+    {date,{2012,12,31}}
+    7> python:stop(P).
+    ok
 
 Standard output redirection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As a convenient feature ErlPort also supports redirection of Python`s `STDOUT`_
+to Erlang which can be used for example for debugging. It's easier to
+demonstrate with Python 3 in which ``print`` is a function:
+
+.. sourcecode:: erl
+
+    1> {ok, P} = python:start([{python, "python3"}]).
+    {ok,<0.34.0>}
+    2> python:call(P, builtins, print, [<<"Hello, World!">>]).
+    b'Hello, World!'
+    undefined
+    3> python:stop(P).
+    ok
 
 Reference manual
 ----------------
@@ -197,7 +403,7 @@ Here you can find complete description of `data types mapping`_, `Erlang
 functions`_, `Python functions`_ and `environment variables`_ supported by
 ErlPort.
 
-.. _data types mapping:
+.. _set of data types:
 
 Data types mapping
 ~~~~~~~~~~~~~~~~~~
@@ -212,6 +418,12 @@ The following table defines mapping of Erlang data types to Python data types:
 | float()                              | float()                              |
 +--------------------------------------+--------------------------------------+
 | atom()                               | `erlport.erlterms.Atom()`_           |
++--------------------------------------+--------------------------------------+
+| true                                 | True                                 |
++--------------------------------------+--------------------------------------+
+| false                                | False                                |
++--------------------------------------+--------------------------------------+
+| undefined                            | None                                 |
 +--------------------------------------+--------------------------------------+
 | binary()                             | str() in Python 2,                   |
 |                                      | bytes() in Python 3                  |
@@ -238,6 +450,12 @@ types mapping between Erlang and Python are practically orthogonal:
 | float()                              | float()                              |
 +--------------------------------------+--------------------------------------+
 | `erlport.erlterms.Atom()`_           | atom()                               |
++--------------------------------------+--------------------------------------+
+| True                                 | true                                 |
++--------------------------------------+--------------------------------------+
+| False                                | false                                |
++--------------------------------------+--------------------------------------+
+| None                                 | undefined                            |
 +--------------------------------------+--------------------------------------+
 | str() in Python 2,                   | binary()                             |
 | bytes() in Python 3                  |                                      |
@@ -319,8 +537,7 @@ python:start(Options) -> {ok, Pid} | {error, Reason}
         the environment variable or ``false`` if the variable should be
         removed.
     nouse_stdio
-        Not use `STDIN/STDOUT <http://en.wikipedia.org/wiki/Standard_streams>`_
-        for communication. *Not supported on Windows.*
+        Not use `STDIN/STDOUT`_ for communication. *Not supported on Windows.*
     {packet, 1 | 2 | 4}
         How many bytes to use for the packet size. The default is 4 which means
         that packets can be as big as 4GB but if you know that your data will
@@ -331,8 +548,7 @@ python:start(Options) -> {ok, Pid} | {error, Reason}
     {start_timeout, Timeout::pos_integer() | infinity}
         Time to wait for the instance to start.
     use_stdio
-        Use `STDIN/STDOUT <http://en.wikipedia.org/wiki/Standard_streams>`_ for
-        communication. The default.
+        Use `STDIN/STDOUT`_ for communication. The default.
 
     Python related options:
 
@@ -381,7 +597,7 @@ python:stop(Instance) -> ok
 .. _python:call/4:
 
 python:call(Instance, Module, Function, Arguments) -> Result
-    Call Python function. The ``Instance`` variable can be a pid() which
+    Call Python function. The ``Instance`` variable can be a ``pid()`` which
     returned by one of the ``python:start`` functions or an instance name
     (atom()) if the instance was registered with a name. The ``Module`` and
     ``Function`` variables should be atoms and ``Arguments`` is a list.
@@ -436,17 +652,24 @@ erlport.erlang.self() -> pid
 .. _erlport.erlang.set_encoder():
 
 erlport.erlang.set_encoder(encoder)
-    Set encoder for custom data types
+    Set encoder for custom data types. Encoder is a function with a single
+    ``value`` argument which is can be any Python data type and should return
+    an Erlang representation of this type using supported `Data types
+    mapping`_.
 
 .. _erlport.erlang.set_decoder():
 
 erlport.erlang.set_decoder(decoder)
-    Set decoder for custom data types
+    Set decoder for custom data types. Decoder is a function with a single
+    ``value`` argument which is one of the supported Erlang data types
+    according to `Data types mapping`_. The function should decode and return
+    Erlang representation of the *rich* Python data type.
 
 .. _erlport.erlang.set_message_handler():
 
 erlport.erlang.set_message_handler(handler)
-    Set message handler
+    Set message handler. Message handler is a function with a single
+    ``message`` argument which receive all the incoming messages.
 
 .. _erlport.erlang.set_default_encoder():
 
@@ -486,3 +709,11 @@ PYTHONPATH
     #. *python_path* option
     #. *PYTHONPATH* environment variable set through the *env* option
     #. *PYTHONPATH* environment variable
+
+
+
+.. _STDIN/STDOUT: http://en.wikipedia.org/wiki/Standard_streams
+.. _STDOUT: `STDIN/STDOUT`_
+.. _picklable: http://docs.python.org/2/library/pickle.html#what-can-be-pickled-and-unpickled
+.. _datetime.date(): http://docs.python.org/2.7/library/datetime.html#date-objects
+.. _datetime.timedelta(): http://docs.python.org/2.7/library/datetime.html#timedelta-objects

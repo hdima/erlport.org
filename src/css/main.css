@@ -134,7 +134,7 @@ pre {
   background-color: #ffffe5;
   border: dashed 1px #ccc;
   font-size: 0.9em;
-  width: 590px;
+  width: 570px;
 }
 
 /*
@@ -300,7 +300,7 @@ tfoot td {}
  */
 .sidebar {
   float:right;
-  width: 250px;
+  width: 270px;
   margin: 0 0 2em 2em;
   padding: 1em;
   background-color: #c5feb5;

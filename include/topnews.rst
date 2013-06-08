@@ -2,7 +2,7 @@
 
 .. _erlport1.0.0alpha:
 
-`2013-06-DD </news/#erlport1-0-0alpha>`_ Released ErlPort 1.0.0alpha
+`2013-06-10 </news/#erlport1-0-0alpha>`_ Released ErlPort 1.0.0alpha
   After almost 2 years of development new `1.0.0alpha
   </downloads/#erlport-1-0-0alpha>`__ version of ErlPort library was released.
 
