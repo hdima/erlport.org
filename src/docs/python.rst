@@ -88,7 +88,7 @@ the following form:
 
 .. sourcecode:: erlang
 
-    {python, ExceptionClass, ExceptionArgument, ReversedStackTrace}
+    error:{python, ExceptionClass, ExceptionArgument, ReversedStackTrace}
 
 For example:
 
@@ -136,7 +136,7 @@ Now we can set path to this module in `python:start/1`_ like this:
 .. sourcecode:: erl
 
     1> {ok, P} = python:start([{python_path, "/path/to/my/modules"},
-    1> {python, "python3"}]).
+    1>                         {python, "python3"}]).
     {ok,<0.34.0>}
     2> python:call(P, version, version, []).
     "3.2.3 (default, Oct 19 2012, 20:10:41) \n[GCC 4.6.3]"
@@ -149,11 +149,11 @@ Call Erlang functions from Python
 .. sidebar:: Python call API
 
     Check `Python API`_ and `data types mapping`_ sections for more details
-    about `erlport.erlang.call`_ function and supported data types.
+    about `erlport.erlang.call()`_ function and supported data types.
 
 ErlPort uses Python `erlport.erlang` module as an interface to Erlang. Namely
-`erlport.erlang.call`_ function allows to call Erlang functions from Python.
-The `erlport.erlang.call`_ function accepts Module and Function arguments as
+`erlport.erlang.call()`_ function allows to call Erlang functions from Python.
+The `erlport.erlang.call()`_ function accepts Module and Function arguments as
 `erlport.erlterms.Atom()`_ object and Arguments as a list. Currently each
 Erlang function will be called in a new Erlang process. Let's create the
 following Python module in ``processes.py`` file in the current directory which
@@ -227,8 +227,8 @@ The following table defines mapping of Erlang data types to Python data types:
 | *Opaque data type container*         | *Opaque data type container*         |
 +--------------------------------------+--------------------------------------+
 
-And here is the table of Python data types to Erlang data types mapping. As you
-can see the types mapping between Erlang and Python are practically orthogonal:
+And here is the table of Python data types to Erlang data types mapping. The
+types mapping between Erlang and Python are practically orthogonal:
 
 +--------------------------------------+--------------------------------------+
 | Python data type                     | Erlang data type                     |
@@ -251,25 +251,36 @@ can see the types mapping between Erlang and Python are practically orthogonal:
 +--------------------------------------+--------------------------------------+
 | `erlport.erlterms.ImproperList()`_   | improper_list()                      |
 +--------------------------------------+--------------------------------------+
-| *Python data type*                   | *Opaque Python data type container*  |
+| *Other Python data type*             | *Opaque Python data type container*  |
 +--------------------------------------+--------------------------------------+
 | *Opaque data type container*         | *Opaque data type container*         |
 +--------------------------------------+--------------------------------------+
 
 .. _erlport.erlterms.Atom():
 
-erlport.erlterms.Atom()
-    Atom class in Python
+erlport.erlterms.Atom(string)
+    Class to represents Erlang atoms in Python. The ``string`` argument should
+    be a byte string (str() in Python 2 or bytes() in Python 3) not longer that
+    255 bytes. Each ``Atom`` instance is a singleton the same as in Erlang.
 
 .. _erlport.erlterms.List():
 
-erlport.erlterms.List()
-    List class in Python
+erlport.erlterms.List(list)
+    Class to represents Erlang lists in Python. Basically just a subclass of
+    list() with the following one additional method:
+
+    List.to_string()
+        Convert list content to an Unicode string (unicode() in Python 2 or
+        str() in Python 3). There's no distinct string data type in Erlang so
+        lists should be explicitly converted to strings with this method.
 
 .. _erlport.erlterms.ImproperList():
 
-erlport.erlterms.ImproperList()
-    Improper list class in Python
+erlport.erlterms.ImproperList(list, tail)
+    Class to represents Erlang improper lists in Python. The ``tail`` argument
+    can't be a list. *Note that this class exists mostly to convert improper
+    lists received from Erlang side and probably there are no reasons to create
+    instances of this class in Python.*
 
 .. _Erlang functions:
 
@@ -278,111 +289,200 @@ Erlang API
 
 .. _python:start/0:
 
-python:start()
-    Start Python instance
+python:start() -> {ok, Pid} | {error, Reason}
+    Start Python instance with the default options
 
 .. _python:start/1:
 
-python:start(Options)
-    Start Python instance
+python:start(Options) -> {ok, Pid} | {error, Reason}
+    Start Python instance with options. The ``Options`` argument should be
+    a list with the following options.
+
+    General options:
+
+    {buffer_size, Size::pos_integer()}
+        Size in bytes of the ErlPort receive buffer on Python side. The default
+        is 65536 bytes.
+    {call_timeout, Timeout::pos_integer() | infinity}
+        Default timeout in milliseconds for function calls. Per call timeouts
+        can be set with `python:call/5`_ function.
+    {cd, Path::string()}
+        Change current directory to ``Path`` before starting.
+    {compressed, 0..9}
+        Set terms compression level. `0` means no compression and `9` will take
+        the most time and *may (or may not)* produce a smaller result. Can be
+        used as an optimisation if you know that your data can be easily
+        compressed.
+    {env, [{Name::string(), Value::string() | false}]}
+        Set environment for Python instance. The ``Name`` variable is the name
+        of environment variable to set and ``Value`` can be a string value of
+        the environment variable or ``false`` if the variable should be
+        removed.
+    nouse_stdio
+        Not use `STDIN/STDOUT <http://en.wikipedia.org/wiki/Standard_streams>`_
+        for communication. *Not supported on Windows.*
+    {packet, 1 | 2 | 4}
+        How many bytes to use for the packet size. The default is 4 which means
+        that packets can be as big as 4GB but if you know that your data will
+        be small you can set it for example to 1 which limits the packet size
+        to 256 bytes but also saves 3 bytes for each packet. *Note however that
+        ErlPort adds some meta-information in each packet so the resulting
+        packets always will be bigger than your expected size.*
+    {start_timeout, Timeout::pos_integer() | infinity}
+        Time to wait for the instance to start.
+    use_stdio
+        Use `STDIN/STDOUT <http://en.wikipedia.org/wiki/Standard_streams>`_ for
+        communication. The default.
+
+    Python related options:
+
+    {python, Python::string()}
+        Path to the Python interpreter executable
+    {python_path, Path::string() | [Path::string()]}
+        The Python modules search path. The ``Path`` variable can be a string
+        in `PYTHONPATH
+        <http://docs.python.org/2/using/cmdline.html#envvar-PYTHONPATH>`_
+        format or a list of paths. The priorities of different ways to set the
+        modules search path is as follows:
+
+        #. *python_path* option
+        #. *PYTHONPATH* environment variable set through the *env* option
+        #. *PYTHONPATH* environment variable
 
 .. _python:start/2:
 
-python:start(Name, Options)
-    Start Python instance
+python:start(Name, Options) -> {ok, Pid} | {error, Reason}
+    Start named Python instance. The instance will be registered with ``Name``
+    name. The ``Options`` variable is the same as for `python:start/1`_.
 
 .. _python:start_link/0:
 
-python:start_link()
-    Start linked Python instance
+python:start_link() -> {ok, Pid} | {error, Reason}
+    The same as `python:start/0`_ except the link to the current process is
+    also created.
 
 .. _python:start_link/1:
 
-python:start_link(Options)
-    Start linked Python instance
+python:start_link(Options) -> {ok, Pid} | {error, Reason}
+    The same as `python:start/1`_ except the link to the current process is
+    also created.
 
 .. _python:start_link/2:
 
-python:start_link(Name, Options)
-    Start linked Python instance
+python:start_link(Name, Options) -> {ok, Pid} | {error, Reason}
+    The same as `python:start/2`_ except the link to the current process is
+    also created.
 
 .. _python:stop/1:
 
-python:stop(Instance)
+python:stop(Instance) -> ok
     Stop Python instance
 
 .. _python:call/4:
 
-python:call(Instance, Module, Function, Arguments)
-    Call Python function
+python:call(Instance, Module, Function, Arguments) -> Result
+    Call Python function. The ``Instance`` variable can be a pid() which
+    returned by one of the ``python:start`` functions or an instance name
+    (atom()) if the instance was registered with a name. The ``Module`` and
+    ``Function`` variables should be atoms and ``Arguments`` is a list.
+
+    In case of any error on Python side during the function call an exception
+    of class `error <http://www.erlang.org/doc/reference_manual/errors.html>`_
+    will be generated in the following form:
+
+    .. sourcecode:: erlang
+
+        error:{python, ExceptionClass, ExceptionArgument, ReversedStackTrace}
+
+.. _python:call/5:
+
+python:call(Instance, Module, Function, Arguments, Options) -> Result
+    The same as `python:call/4`_ except the following options can be added:
+
+    {timeout, Timeout::pos_integer() | infinity}
+        Call timeout in milliseconds.
 
 .. _python:cast/2:
 
-python:cast(Instance, Message)
-    Send a message
+python:cast(Instance, Message) -> ok
+    Send a message to the python instance.
 
 .. _Python functions:
 
 Python API
 ~~~~~~~~~~
 
-.. _erlport.erlang.call:
+.. _erlport.erlang.call():
 
-erlport.erlang.call()
-    Call Erlang function
+erlport.erlang.call(module, function, arguments) -> result
+    Call Erlang function as ``module:function(arguments)``. The
+    ``function`` and ``module`` variables should be of type
+    `erlport.erlterms.Atom()`_ and ``arguments`` should be a list.
 
-.. _erlport.erlang.cast:
+.. _erlport.erlang.cast():
 
-erlport.erlang.cast()
-    Send a message to Erlang
+erlport.erlang.cast(pid, message)
+    Send a message to Erlang. The ``pid`` and ``message`` variables should be
+    the same types as supported by `Erlang ! (send) expression
+    <http://www.erlang.org/doc/reference_manual/expressions.html#id77156>`_.
+    Erlang ``pid()`` variables however can't be created in Python but can be
+    passed as parameters from Erlang.
 
-.. _erlport.erlang.self:
+.. _erlport.erlang.self():
 
-erlport.erlang.self()
-    Get the pid of Python instance
+erlport.erlang.self() -> pid
+    Get the Erlang pid of the Python instance
 
-.. _erlport.erlang.make_ref:
+.. _erlport.erlang.set_encoder():
 
-erlport.erlang.make_ref()
-    Create new Erlang reference
-
-.. _erlport.erlang.set_encoder:
-
-erlport.erlang.set_encoder()
+erlport.erlang.set_encoder(encoder)
     Set encoder for custom data types
 
-.. _erlport.erlang.set_decoder:
+.. _erlport.erlang.set_decoder():
 
-erlport.erlang.set_decoder()
+erlport.erlang.set_decoder(decoder)
     Set decoder for custom data types
 
-.. _erlport.erlang.set_message_handler:
+.. _erlport.erlang.set_message_handler():
 
-erlport.erlang.set_message_handler()
+erlport.erlang.set_message_handler(handler)
     Set message handler
 
-.. _erlport.erlang.set_default_encoder:
+.. _erlport.erlang.set_default_encoder():
 
 erlport.erlang.set_default_encoder()
-    Reset encoder for custom data types
+    Reset custom data types encoder to the default which just pass the term
+    through without any modifications
 
-.. _erlport.erlang.set_default_decoder:
+.. _erlport.erlang.set_default_decoder():
 
 erlport.erlang.set_default_decoder()
-    Reset decoder for custom data types
+    Reset custom data types decoder to the default which just pass the term
+    through without any modifications
 
-.. _erlport.erlang.set_default_message_handler:
+.. _erlport.erlang.set_default_message_handler():
 
 erlport.erlang.set_default_message_handler()
-    Reset message handler
+    Reset message handler to the default which just ignores all the incoming
+    messages
 
 .. _environment variables:
 
 Environment variables
 ~~~~~~~~~~~~~~~~~~~~~
 
-PYTHON
-    Path to Python interpreter
+The following environment variables can change the default behavior of
+ErlPort:
+
+ERLPORT_PYTHON
+    Path to Python interpreter executable which will be used by default.
 
 PYTHONPATH
-    Python path
+    The default search patch for module files. The same as `PYTHONPATH
+    <http://docs.python.org/2/using/cmdline.html#envvar-PYTHONPATH>`_
+    environment variable supported by Python. The priorities of different
+    ways to set the modules search path is as follows:
+
+    #. *python_path* option
+    #. *PYTHONPATH* environment variable set through the *env* option
+    #. *PYTHONPATH* environment variable
