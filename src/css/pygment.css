@@ -6,7 +6,7 @@ color:#408090;
 font-style:italic;
 }
 .err {
-border:1px solid #FF0000;
+/*border:1px solid #FF0000;*/
 }
 .k {
 color:#007020;
@@ -95,7 +95,7 @@ color:#007020;
 color:#0E84B5;
 }
 .no {
-color:#60ADD5;
+color:#408DB5;
 }
 .nd {
 color:#555555;

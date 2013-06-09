@@ -30,7 +30,7 @@ Python instances
 If you read main `Documentation </docs/>`__ page you should know that before
 any use of ErlPort you need to start a Python `instance
 </docs/#how-erlport-works>`__. A Python instance is basically an operating
-system process which represented on Erlang side as an Erlang process.
+system process which represented in Erlang by Erlang process.
 
 To start an instance of Python one of the variants of ``python:start`` or
 ``python:start_link`` functions should be used. The `python:start/0`_ function
@@ -39,8 +39,10 @@ will start Python instance with the default parameters.
 To stop the running Python instance `python:stop/1`_ function should be used
 with the instance id as the parameter.
 
-And of course you can run more than one instance of Python, but be careful to
-not create way too many instances because they can waste all the OS resources:
+And of course you can run more than one Python instance, but be careful to not
+create way too many because they can waste all the OS resources.
+
+The following is an example of start/stop API:
 
 .. sourcecode:: erl
 
@@ -71,9 +73,9 @@ accepts the instance id and Module, Function and Arguments for Python function:
     2> python:call(P, operator, add, [2, 2]).
     4
 
-Of course in Python you can use not only modules but also packages and
-imported objects can use attributes as functions so `python:call/4`_ also
-support dot-separated names for Module and Function arguments:
+Of course in Python you can also have hierarchies of modules and objects so
+`python:call/4`_ supports dot-separated names for Module and Function
+arguments:
 
 .. sourcecode:: erl
 
@@ -117,12 +119,10 @@ And of course don't forget to stop the instance at the end:
     ok
 
 If you want to call a function from your own Python module in most cases you
-need to set the `Python path
-<http://docs.python.org/2/using/cmdline.html#envvar-PYTHONPATH>`_. You can do
-it with `python:start/1`_ function or *PYTHONPATH* `environment variable
-<#environment-variables>`_. The `python:start/1`_ also can be used to change
-the default Python interpreter. For example let's create a simple Python
-module in ``/path/to/my/modules/version.py`` file:
+need to set the `Python path`_. You can do it with `python:start/1`_ function
+or *PYTHONPATH* `environment variable`_. The `python:start/1`_ also can be used
+to change the default Python interpreter. For example let's create a simple
+Python module in ``/path/to/my/modules/version.py`` file:
 
 .. sourcecode:: python
 
@@ -153,11 +153,11 @@ Call Erlang functions from Python
 
 ErlPort uses Python `erlport.erlang` module as an interface to Erlang. Namely
 `erlport.erlang.call()`_ function allows to call Erlang functions from Python.
-The `erlport.erlang.call()`_ function accepts Module and Function arguments as
+The function accepts Module and Function arguments as
 `erlport.erlterms.Atom()`_ object and Arguments as a list. Currently each
 Erlang function will be called in a new Erlang process. Let's create the
-following Python module in ``pids.py`` file in the current directory which
-will be added to Python path automatically by Python:
+following Python module in ``pids.py`` file in the current directory which will
+be added to Python path automatically by Python:
 
 .. sourcecode:: python
 
@@ -203,8 +203,8 @@ example also demonstrate the communication between two Python instances:
     ok
 
 So the command #5 actually calls `erlport.erlang.call()`_ function for instance
-``P1`` which calls Erlang function `python:call/4`_ which in order calls Python
-function ``os.getpid()`` for instance ``P2``.
+``P1``, which calls Erlang function `python:call/4`_, which in order calls
+Python function ``os.getpid()`` for instance ``P2``.
 
 Send messages from Erlang to Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -226,8 +226,8 @@ message anymore the default handler can be set again with
 also get some unexpected messages which probably should be ignored and in case
 of any error in the message handler the whole instance will be shut down.*
 
-To demonstrate message sending from Erlang to Python first create the following
-module in the current directory in a file ``handler.py``:
+To demonstrate message sending from Erlang to Python we will first create the
+following module in the current directory in a file ``handler.py``:
 
 .. sourcecode:: python
 
@@ -240,7 +240,7 @@ module in the current directory in a file ``handler.py``:
         set_message_handler(handler)
         return Atom("ok")
 
-This message handler just send all messages to the predefined Erlang process.
+This message handler just send all messages to the selected Erlang process.
 
 To send a message to Python `python:cast/2`_ function can be used and also all
 unknown to ErlPort messages will be redirected to the message handler.
@@ -276,7 +276,8 @@ It's very easy to send a message from Python to Erlang - you just need to know
 the ``pid()`` or registered name of the destination process. The function
 `erlport.erlang.cast()`_ accepts two arguments - the id of the destination
 process and a message which can be any supported data type according to `Data
-types mapping`_.
+types mapping`_. And of course you can send messages to any other ErlPort
+process.
 
 The following is a demonstration of message sending from Python:
 
@@ -324,7 +325,7 @@ There are two functions to support custom data types:
 
 Both of the functions can be reset to the default, which just pass the value
 unmodified, with `erlport.erlang.set_default_encoder()`_ and
-`erlport.erlang.set_default_decoder()`_ functions.
+`erlport.erlang.set_default_decoder()`_ functions correspondingly.
 
 To give you a feeling how it works the following module in the current
 directory and ``date_type.py`` file will add the partial support to ErlPort for
@@ -360,7 +361,6 @@ directory and ``date_type.py`` file will add the partial support to ErlPort for
 The ``date_type`` module can be used in Erlang shell like this:
 
 .. sourcecode:: erl
-
 
     1> {ok, P} = python:start().
     {ok,<0.34.0>}
@@ -439,8 +439,8 @@ The following table defines mapping of Erlang data types to Python data types:
 | *Opaque data type container*         | *Opaque data type container*         |
 +--------------------------------------+--------------------------------------+
 
-And here is the table of Python data types to Erlang data types mapping. The
-types mapping between Erlang and Python are practically orthogonal:
+And here is the table of Python to Erlang data types mapping. The types mapping
+between Erlang and Python are practically orthogonal:
 
 +--------------------------------------+--------------------------------------+
 | Python data type                     | Erlang data type                     |
@@ -477,14 +477,14 @@ types mapping between Erlang and Python are practically orthogonal:
 .. _erlport.erlterms.Atom():
 
 erlport.erlterms.Atom(string)
-    Class to represents Erlang atoms in Python. The ``string`` argument should
+    Class to represent Erlang atoms in Python. The ``string`` argument should
     be a byte string (str() in Python 2 or bytes() in Python 3) not longer that
     255 bytes. Each ``Atom`` instance is a singleton the same as in Erlang.
 
 .. _erlport.erlterms.List():
 
 erlport.erlterms.List(list)
-    Class to represents Erlang lists in Python. Basically just a subclass of
+    Class to represent Erlang lists in Python. Basically just a subclass of
     list() with the following one additional method:
 
     List.to_string()
@@ -495,7 +495,7 @@ erlport.erlterms.List(list)
 .. _erlport.erlterms.ImproperList():
 
 erlport.erlterms.ImproperList(list, tail)
-    Class to represents Erlang improper lists in Python. The ``tail`` argument
+    Class to represent Erlang improper lists in Python. The ``tail`` argument
     can't be a list. *Note that this class exists mostly to convert improper
     lists received from Erlang side and probably there are no reasons to create
     instances of this class in Python.*
@@ -511,6 +511,8 @@ python:start() -> {ok, Pid} | {error, Reason}
     Start Python instance with the default options
 
 .. _python:start/1:
+.. _python_path:
+.. _env:
 
 python:start(Options) -> {ok, Pid} | {error, Reason}
     Start Python instance with options. The ``Options`` argument should be
@@ -556,13 +558,11 @@ python:start(Options) -> {ok, Pid} | {error, Reason}
         Path to the Python interpreter executable
     {python_path, Path::string() | [Path::string()]}
         The Python modules search path. The ``Path`` variable can be a string
-        in `PYTHONPATH
-        <http://docs.python.org/2/using/cmdline.html#envvar-PYTHONPATH>`_
-        format or a list of paths. The priorities of different ways to set the
-        modules search path is as follows:
+        in `PYTHONPATH`_ format or a list of paths. The priorities of different
+        ways to set the modules search path is as follows:
 
-        #. *python_path* option
-        #. *PYTHONPATH* environment variable set through the *env* option
+        #. `python_path`_ option
+        #. *PYTHONPATH* environment variable set through the `env`_ option
         #. *PYTHONPATH* environment variable
 
 .. _python:start/2:
@@ -621,7 +621,7 @@ python:call(Instance, Module, Function, Arguments, Options) -> Result
 .. _python:cast/2:
 
 python:cast(Instance, Message) -> ok
-    Send a message to the python instance.
+    Send a message to the Python instance.
 
 .. _Python functions:
 
@@ -674,22 +674,23 @@ erlport.erlang.set_message_handler(handler)
 .. _erlport.erlang.set_default_encoder():
 
 erlport.erlang.set_default_encoder()
-    Reset custom data types encoder to the default which just pass the term
+    Reset custom data types encoder to the default which is just pass the term
     through without any modifications
 
 .. _erlport.erlang.set_default_decoder():
 
 erlport.erlang.set_default_decoder()
-    Reset custom data types decoder to the default which just pass the term
+    Reset custom data types decoder to the default which is just pass the term
     through without any modifications
 
 .. _erlport.erlang.set_default_message_handler():
 
 erlport.erlang.set_default_message_handler()
-    Reset message handler to the default which just ignores all the incoming
+    Reset message handler to the default which is just ignore all the incoming
     messages
 
 .. _environment variables:
+.. _environment variable:
 
 Environment variables
 ~~~~~~~~~~~~~~~~~~~~~
@@ -701,17 +702,17 @@ ERLPORT_PYTHON
     Path to Python interpreter executable which will be used by default.
 
 PYTHONPATH
-    The default search patch for module files. The same as `PYTHONPATH
-    <http://docs.python.org/2/using/cmdline.html#envvar-PYTHONPATH>`_
-    environment variable supported by Python. The priorities of different
-    ways to set the modules search path is as follows:
+    The default search patch for module files. The same as `PYTHONPATH`_
+    environment variable supported by Python. The priorities of different ways
+    to set the modules search path is as follows:
 
-    #. *python_path* option
-    #. *PYTHONPATH* environment variable set through the *env* option
+    #. `python_path`_ option
+    #. *PYTHONPATH* environment variable set through the `env`_ option
     #. *PYTHONPATH* environment variable
 
 
-
+.. _PYTHONPATH: http://docs.python.org/2/using/cmdline.html#envvar-PYTHONPATH
+.. _Python path: `PYTHONPATH`_
 .. _STDIN/STDOUT: http://en.wikipedia.org/wiki/Standard_streams
 .. _STDOUT: `STDIN/STDOUT`_
 .. _picklable: http://docs.python.org/2/library/pickle.html#what-can-be-pickled-and-unpickled
