@@ -10,6 +10,13 @@
   Erlang to `Python </docs/python.html>`__ or `Ruby </docs/ruby.html>`__ or
   want to use Erlang as a middleware for these two programming languages.
 
+  Changes:
+
+  - Redesigned as Erlang application
+  - Added support for all recent `Python </docs/python.html>`_ versions
+  - Added support for all recent `Ruby </docs/ruby.html>`_ versions
+  - Added support for custom data types
+
   The following is an example ErlPort session for Python:
 
   .. sourcecode:: erl
