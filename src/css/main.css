@@ -345,6 +345,7 @@ dl.news {
  * Not found page
  */
 .not-found {
+  clear: both;
   background-color: #d53030;
   color: white;
   padding: .3em 1em;
