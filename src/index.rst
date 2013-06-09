@@ -12,7 +12,7 @@ What is ErlPort?
 
 .. include:: include/erlport.rst
 
-Please check `Documentation </docs>`_ page for features of ErlPort, examples
+Please check `Documentation </docs/>`_ page for features of ErlPort, examples
 and more details of how to use the library.
 
 .. class:: main-downloads
@@ -34,4 +34,4 @@ Latest news
 
 .. include:: include/topnews.rst
 
-Check `News </news>`__ page for more news about ErlPort.
+Check `News </news/>`__ page for more news about ErlPort.

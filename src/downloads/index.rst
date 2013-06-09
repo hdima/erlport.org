@@ -64,7 +64,7 @@ following command:
 
     $ erl -env ERL_LIBS ../erlport
 
-Please check `Documentation </docs>`_ page for features of ErlPort, examples
+Please check `Documentation </docs/>`_ page for features of ErlPort, examples
 and more details of how to use the library.
 
 ErlPort 1.0.0alpha

@@ -71,13 +71,13 @@ class Site(object):
         # TODO: Should be created automatically
         home = {"title": "Home", "url": "/"}
         items = [home,
-                {"title": "News", "url": "/news"},
-                {"title": "Documentation", "url": "/docs"},
-                {"title": "Downloads", "url": "/downloads"},
+                {"title": "News", "url": "/news/"},
+                {"title": "Documentation", "url": "/docs/"},
+                {"title": "Downloads", "url": "/downloads/"},
                 {"title": "Contributors", "url": "/contributors.html"}]
         root = "/".join(path.split("/")[:2])
         for item in items:
-            if root == item["url"]:
+            if root == item["url"].rstrip("/"):
                 item["selected"] = True
                 break
         else:

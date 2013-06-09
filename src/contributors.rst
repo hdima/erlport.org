@@ -10,11 +10,11 @@ ErlPort contributors
 
 List of the people in alphabetical order which contributed to ErlPort library:
 
-- `Artem Semenov <http://github.com/arsemyonov>`_
-- `Bob Ippolito <http://github.com/etrepum>`_
-- `David Reid <http://github.com/dreid>`_
-- `Garrett Smith <http://github.com/gar1t>`_
-- `Ivan Glushkov <http://github.com/gliush>`_
-- `Jacob Perkins <http://github.com/japerk>`_
-- `Marko Mikulicic <http://github.com/mmikulicic>`_
-- `Paul Bonser <http://github.com/pib>`_
+- `Artem Semenov <https://github.com/arsemyonov>`_
+- `Bob Ippolito <https://github.com/etrepum>`_
+- `David Reid <https://github.com/dreid>`_
+- `Garrett Smith <https://github.com/gar1t>`_
+- `Ivan Glushkov <https://github.com/gliush>`_
+- `Jacob Perkins <https://github.com/japerk>`_
+- `Marko Mikulicic <https://github.com/mmikulicic>`_
+- `Paul Bonser <https://github.com/pib>`_

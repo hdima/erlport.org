@@ -14,11 +14,11 @@ Please use one of the following pages:
 
 `Home </>`__
     Home page with a basic information about ErlPort library
-`News </news>`__
+`News </news/>`__
     Latest news about ErlPort
-`Documentation </docs>`__
+`Documentation </docs/>`__
     ErlPort features, examples and details of how to use the library
-`Downloads </downloads>`__
+`Downloads </downloads/>`__
     ErlPort installation instructions and packages to download
 
 What is ErlPort?
