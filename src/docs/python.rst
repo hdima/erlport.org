@@ -325,7 +325,9 @@ There are two functions to support custom data types:
 
 Both of the functions can be reset to the default, which just pass the value
 unmodified, with `erlport.erlang.set_default_encoder()`_ and
-`erlport.erlang.set_default_decoder()`_ functions correspondingly.
+`erlport.erlang.set_default_decoder()`_ functions correspondingly. *Note also
+that there's no support for automatic traversing of container data types so it
+should be implemented by encoder/decoder functions if needed.*
 
 To give you a feeling how it works the following module in the current
 directory and ``date_type.py`` file will add the partial support to ErlPort for

@@ -329,7 +329,9 @@ There are two functions to support custom data types:
 
 Both of the functions can be reset to the default, which just pass the value
 unmodified, with `ErlPort::Erlang::set_default_encoder()`_ and
-`ErlPort::Erlang::set_default_decoder()`_ functions correspondingly.
+`ErlPort::Erlang::set_default_decoder()`_ functions correspondingly. *Note also
+that there's no support for automatic traversing of container data types so it
+should be implemented by encoder/decoder functions if needed.*
 
 To give you a feeling how it works the following file in the current directory
 with name ``date_type.rb`` will add the partial support to ErlPort for
