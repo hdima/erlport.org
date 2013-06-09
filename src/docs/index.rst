@@ -32,8 +32,8 @@ Easy inter-language function calls
 
 Easy inter-language message passing
   All external languages have an API to send or handle messages sent from other
-  languages. Moreover on Erlang side all ErlPort related messages will be
-  redirected to external language processes.
+  languages. Moreover on Erlang side all messages will be redirected to an
+  ErlPort external process.
 
 Support for custom data types
   All external languages support subset of `Erlang data types
@@ -41,7 +41,7 @@ Support for custom data types
   data types mapping. Also a special data type exists to transfer language
   specific data types between the same type of languages automatically. And
   moreover it's possible to create custom encoders/decoders to support higher
-  level data types mapping.
+  level data types.
 
 Support for all recent versions of the languages
   ErlPort should work on any operating system (including Windows) on which
