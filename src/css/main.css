@@ -209,7 +209,7 @@ tfoot td {}
   font-size: 1.43em;
   height: 2em;
   line-height: 1.5em;
-  margin: 0 auto 0.7em auto;
+  margin: 0 auto;
   padding: 0;
   text-align: center;
 }
@@ -257,7 +257,16 @@ tfoot td {}
   margin: 1em 0;
 }
 
+#social {
+  float: right;
+  width: 370px;
+  margin: 0 0 1em 0;
+  text-align: right;
+  vertical-align: middle;
+}
+
 .main-downloads {
+  clear: right;
   float: right;
   width: 320px;
   margin: 0;
@@ -280,7 +289,7 @@ tfoot td {}
 .main-description {
   float: left;
   width: 530px;
-  margin: 0 0.5em 0 0;
+  margin: 2em 0.5em 0 0;
 }
 .main-description h1 {
   font-size: 2em;
