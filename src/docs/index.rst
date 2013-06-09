@@ -2,7 +2,7 @@ ErlPort - Documentation
 =======================
 
 .. meta::
-   :keywords: erlport erlang python ruby docs documentation
+   :keywords: erlport erlang python ruby documentation
    :description: Documentation for ErlPort library
 
 ErlPort documentation
