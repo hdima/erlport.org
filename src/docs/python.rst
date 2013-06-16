@@ -8,6 +8,13 @@ ErlPort - Python documentation
 ErlPort Python documentation
 ++++++++++++++++++++++++++++
 
+.. sidebar:: Other documentation pages
+
+    `Main page </docs/>`__
+        Main documentation page
+    `Ruby <ruby.html>`__
+        Details and examples for Ruby
+
 .. contents::
 
 Overview and examples
