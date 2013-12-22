@@ -13,6 +13,7 @@ List of the people in alphabetical order which contributed to ErlPort library:
 - `Artem Semenov <https://github.com/arsemyonov>`_
 - `Bob Ippolito <https://github.com/etrepum>`_
 - `Chad DePue <https://github.com/cbd>`_
+- `Daniel Kempkens <https://github.com/nifoc>`_
 - `David Reid <https://github.com/dreid>`_
 - `Francesco Mosconi <https://github.com/ghego>`_
 - `Garrett Smith <https://github.com/gar1t>`_
