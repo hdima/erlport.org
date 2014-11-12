@@ -10,6 +10,7 @@ ErlPort contributors
 
 List of the people in alphabetical order which contributed to ErlPort library:
 
+- `Alexander Shorin <https://github.com/kxepal>`_
 - `Artem Semenov <https://github.com/arsemyonov>`_
 - `Bob Ippolito <https://github.com/etrepum>`_
 - `Chad DePue <https://github.com/cbd>`_
@@ -20,7 +21,9 @@ List of the people in alphabetical order which contributed to ErlPort library:
 - `Ivan Glushkov <https://github.com/gliush>`_
 - `Jacob Perkins <https://github.com/japerk>`_
 - `Kirill Kinduk <https://github.com/EvilBlueBeaver>`_
+- `Mark A. Sheldon <https://github.com/marksheldon>`_
 - `Marko Mikulicic <https://github.com/mmikulicic>`_
+- `Maxim V <https://github.com/maximvl>`_
 - `Paul Bonser <https://github.com/pib>`_
 - `Sonic Gao <https://github.com/sonicgao>`_
 - `willemdj at GitHub <https://github.com/willemdj>`_

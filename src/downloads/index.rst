@@ -85,21 +85,25 @@ The following are the binary packages compiled for each supported version of
 Erlang and packaged into *tar.gz* and *zip* archives:
 
 +----------------------------------------------------+--------------------------------------+
-| ErlPort 1.0.0alpha *tar.gz* archive for Erlang R16 | `<erlport-R16-0.9.8.tar.gz>`__ (76K) |
+| ErlPort 1.0.0alpha *tar.gz* archive for Erlang R17 | `<erlport-R17-0.9.8.tar.gz>`__ (77K) |
 +----------------------------------------------------+--------------------------------------+
-| ErlPort 1.0.0alpha *zip* archive for Erlang R16    | `<erlport-R16-0.9.8.zip>`__ (126K)   |
+| ErlPort 1.0.0alpha *zip* archive for Erlang R17    | `<erlport-R17-0.9.8.zip>`__ (127K)   |
 +----------------------------------------------------+--------------------------------------+
-| ErlPort 1.0.0alpha *tar.gz* archive for Erlang R15 | `<erlport-R15-0.9.8.tar.gz>`__ (76K) |
+| ErlPort 1.0.0alpha *tar.gz* archive for Erlang R16 | `<erlport-R16-0.9.8.tar.gz>`__ (77K) |
 +----------------------------------------------------+--------------------------------------+
-| ErlPort 1.0.0alpha *zip* archive for Erlang R15    | `<erlport-R15-0.9.8.zip>`__ (126K)   |
+| ErlPort 1.0.0alpha *zip* archive for Erlang R16    | `<erlport-R16-0.9.8.zip>`__ (127K)   |
 +----------------------------------------------------+--------------------------------------+
-| ErlPort 1.0.0alpha *tar.gz* archive for Erlang R14 | `<erlport-R14-0.9.8.tar.gz>`__ (75K) |
+| ErlPort 1.0.0alpha *tar.gz* archive for Erlang R15 | `<erlport-R15-0.9.8.tar.gz>`__ (77K) |
 +----------------------------------------------------+--------------------------------------+
-| ErlPort 1.0.0alpha *zip* archive for Erlang R14    | `<erlport-R14-0.9.8.zip>`__ (125K)   |
+| ErlPort 1.0.0alpha *zip* archive for Erlang R15    | `<erlport-R15-0.9.8.zip>`__ (127K)   |
 +----------------------------------------------------+--------------------------------------+
-| ErlPort 1.0.0alpha *tar.gz* archive for Erlang R13 | `<erlport-R13-0.9.8.tar.gz>`__ (75K) |
+| ErlPort 1.0.0alpha *tar.gz* archive for Erlang R14 | `<erlport-R14-0.9.8.tar.gz>`__ (76K) |
 +----------------------------------------------------+--------------------------------------+
-| ErlPort 1.0.0alpha *zip* archive for Erlang R13    | `<erlport-R13-0.9.8.zip>`__ (125K)   |
+| ErlPort 1.0.0alpha *zip* archive for Erlang R14    | `<erlport-R14-0.9.8.zip>`__ (126K)   |
++----------------------------------------------------+--------------------------------------+
+| ErlPort 1.0.0alpha *tar.gz* archive for Erlang R13 | `<erlport-R13-0.9.8.tar.gz>`__ (76K) |
++----------------------------------------------------+--------------------------------------+
+| ErlPort 1.0.0alpha *zip* archive for Erlang R13    | `<erlport-R13-0.9.8.zip>`__ (126K)   |
 +----------------------------------------------------+--------------------------------------+
 
 Source packages
@@ -108,7 +112,7 @@ Source packages
 The ErlPort source archives in *tar.gz* and *zip* formats:
 
 +---------------------------------------------+--------------------------------------+
-| ErlPort 1.0.0alpha *tar.gz* sources archive | `<erlport-src-0.9.8.tar.gz>`__ (70K) |
+| ErlPort 1.0.0alpha *tar.gz* sources archive | `<erlport-src-0.9.8.tar.gz>`__ (72K) |
 +---------------------------------------------+--------------------------------------+
-| ErlPort 1.0.0alpha *zip* sources archive    | `<erlport-src-0.9.8.zip>`__ (153K)   |
+| ErlPort 1.0.0alpha *zip* sources archive    | `<erlport-src-0.9.8.zip>`__ (155K)   |
 +---------------------------------------------+--------------------------------------+
