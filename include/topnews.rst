@@ -1,5 +1,14 @@
 .. class:: news
 
+.. _erlport_mail_list:
+
+`2015-01-02 </news/#erlport-mail-list>`_ New ErlPort mail list
+  Thanks to `Duncan McGreggor <https://github.com/oubiwann>`_ the ErlPort mail
+  list erlport@googlegroups.com (https://groups.google.com/d/forum/erlport) is
+  now open for discussions!
+
+.. class:: news
+
 .. _erlport1.0.0alpha:
 
 `2013-06-10 </news/#erlport1-0-0alpha>`_ Released ErlPort 1.0.0alpha
