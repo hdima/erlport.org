@@ -19,6 +19,7 @@ List of the people in alphabetical order which contributed to ErlPort library:
 - `Duncan McGreggor <https://github.com/oubiwann>`_
 - `Francesco Mosconi <https://github.com/ghego>`_
 - `Garrett Smith <https://github.com/gar1t>`_
+- `Gregoire Lejeune <https://github.com/glejeune>`_
 - `Ivan Glushkov <https://github.com/gliush>`_
 - `Jacob Perkins <https://github.com/japerk>`_
 - `Kirill Kinduk <https://github.com/EvilBlueBeaver>`_
