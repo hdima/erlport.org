@@ -22,10 +22,12 @@ List of the people in alphabetical order which contributed to ErlPort library:
 - `Gregoire Lejeune <https://github.com/glejeune>`_
 - `Ivan Glushkov <https://github.com/gliush>`_
 - `Jacob Perkins <https://github.com/japerk>`_
+- `Johnlin <https://github.com/johnlinvc>`_
 - `Kirill Kinduk <https://github.com/EvilBlueBeaver>`_
 - `Mark A. Sheldon <https://github.com/marksheldon>`_
 - `Marko Mikulicic <https://github.com/mmikulicic>`_
 - `Maxim V <https://github.com/maximvl>`_
 - `Paul Bonser <https://github.com/pib>`_
 - `Sonic Gao <https://github.com/sonicgao>`_
+- `Steve Cohen <https://github.com/scohen>`_
 - `willemdj at GitHub <https://github.com/willemdj>`_
